@@ -6,7 +6,7 @@
    3. Interactive Fireworks & Petal Particle System
    4. Realistic 3D Flag Hoisting Ceremony Simulator + Auto-Redirect to Music Player
    5. Patriotic Music Player — Local music/ Folder (Singing & Instrumental)
-   6. Zeel Rupapara Personal Wish Card Generator & PNG / PDF Downloader (Dark/White Themes)
+   6. Zeel Rupapara Personal Wish Card Generator & PNG / PDF Downloader (Dark/White Themes, Landscape Mobile Export)
    7. Responsive Mobile Navigation & Scroll Spy
    ========================================================================== */
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* --------------------------------------------------------------------------
-   1. ASHOKA CHAKRA SPOKES RRENDERER (24 SPOKES)
+   1. ASHOKA CHAKRA SPOKES RENDERER (24 SPOKES)
    -------------------------------------------------------------------------- */
 function initAshokaChakras() {
   function drawSpokes(container, cx, cy, rInner, rOuter, strokeWidth, color) {
@@ -634,8 +634,71 @@ function initVisualizerCanvas() {
 }
 
 /* --------------------------------------------------------------------------
-   6. ZEEL RUPAPARA WISH CARD GENERATOR & PHOTO (PNG) / PDF DOWNLOAD
+   6. ZEEL RUPAPARA WISH CARD GENERATOR & LANDSCAPE MOBILE EXPORT (PNG/PDF)
    -------------------------------------------------------------------------- */
+function renderLandscapeWishCardCanvas(wishCardEl) {
+  return new Promise((resolve, reject) => {
+    const isWhiteTheme = wishCardEl.classList.contains("theme-light");
+    
+    // Clone element to force exact 850px Landscape canvas regardless of mobile screen width
+    const clone = wishCardEl.cloneNode(true);
+    clone.style.width = "850px";
+    clone.style.maxWidth = "none";
+    clone.style.minWidth = "850px";
+    clone.style.position = "fixed";
+    clone.style.left = "-9999px";
+    clone.style.top = "0";
+    clone.style.zIndex = "-9999";
+    clone.style.transform = "none";
+    clone.style.boxShadow = "none";
+
+    // Format interior layout in pristine landscape alignment
+    const bodyContent = clone.querySelector(".card-body-content");
+    if (bodyContent) bodyContent.style.padding = "40px 36px";
+
+    const title = clone.querySelector(".card-main-title");
+    if (title) title.style.fontSize = "2.4rem";
+
+    const message = clone.querySelector(".card-message-text");
+    if (message) {
+      message.style.fontSize = "1.25rem";
+      message.style.lineHeight = "1.7";
+      message.style.marginBottom = "30px";
+    }
+
+    const footerTags = clone.querySelector(".card-footer-tags");
+    if (footerTags) {
+      footerTags.style.display = "flex";
+      footerTags.style.flexDirection = "row";
+      footerTags.style.justifyContent = "space-between";
+      footerTags.style.alignItems = "center";
+      footerTags.style.textAlign = "left";
+      footerTags.style.paddingTop = "24px";
+    }
+
+    const badgeSeal = clone.querySelector(".tag-badge-seal");
+    if (badgeSeal) badgeSeal.style.textAlign = "right";
+
+    document.body.appendChild(clone);
+
+    html2canvas(clone, {
+      scale: 2,
+      useCORS: true,
+      width: 850,
+      windowWidth: 1200,
+      backgroundColor: isWhiteTheme ? "#FFFFFF" : "#070B14"
+    }).then(canvas => {
+      document.body.removeChild(clone);
+      resolve(canvas);
+    }).catch(err => {
+      if (document.body.contains(clone)) {
+        document.body.removeChild(clone);
+      }
+      reject(err);
+    });
+  });
+}
+
 function initZeelWishes() {
   const nameInput = document.getElementById("visitorNameInput");
   const msgSelect = document.getElementById("wishMsgSelect");
@@ -680,7 +743,7 @@ function initZeelWishes() {
     const selectedMsgKey = msgSelect ? msgSelect.value : "1";
 
     bodyText.innerText = messagesMap[selectedMsgKey] || messagesMap["1"];
-    authorTag.innerText = `${visitorName}`;
+    authorTag.innerText = `${visitorName} & Zeel Rupapara`;
 
     wishOutput.classList.remove("hidden");
     wishOutput.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -689,19 +752,14 @@ function initZeelWishes() {
     triggerFlowerPetals();
   });
 
-  // Download Card as Photo (PNG)
+  // Download Card as Photo (PNG) — Full-Width Landscape format on Phone & Desktop
   if (downloadImgBtn) {
     downloadImgBtn.addEventListener("click", () => {
       const visitorName = nameInput.value.trim() || "ProudIndian";
-      downloadImgBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating Photo...`;
+      downloadImgBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating Landscape Photo...`;
 
       if (typeof html2canvas !== "undefined") {
-        const isWhiteTheme = wishCardEl.classList.contains("theme-light");
-        html2canvas(wishCardEl, {
-          scale: 2,
-          useCORS: true,
-          backgroundColor: isWhiteTheme ? "#FFFFFF" : "#070B14"
-        }).then(canvas => {
+        renderLandscapeWishCardCanvas(wishCardEl).then(canvas => {
           const image = canvas.toDataURL("image/png");
           const link = document.createElement("a");
           link.download = `Azaadi_WishCard_${visitorName.replace(/\s+/g, '_')}.png`;
@@ -722,19 +780,14 @@ function initZeelWishes() {
     });
   }
 
-  // Download Card as PDF
+  // Download Card as PDF — Full-Width Landscape format on Phone & Desktop
   if (downloadPdfBtn) {
     downloadPdfBtn.addEventListener("click", () => {
       const visitorName = nameInput.value.trim() || "ProudIndian";
-      downloadPdfBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating PDF...`;
+      downloadPdfBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating Landscape PDF...`;
 
       if (typeof html2canvas !== "undefined" && window.jspdf) {
-        const isWhiteTheme = wishCardEl.classList.contains("theme-light");
-        html2canvas(wishCardEl, {
-          scale: 2,
-          useCORS: true,
-          backgroundColor: isWhiteTheme ? "#FFFFFF" : "#070B14"
-        }).then(canvas => {
+        renderLandscapeWishCardCanvas(wishCardEl).then(canvas => {
           const imgData = canvas.toDataURL("image/jpeg", 0.98);
           const { jsPDF } = window.jspdf;
           const pdf = new jsPDF({
@@ -819,7 +872,6 @@ function initNavigation() {
    8. QUOTE CAROUSEL
    -------------------------------------------------------------------------- */
 function initQuoteCarousel() {
-  const quotes = Array.from(document.getElementById("quoteDots")?.children || []);
   const quoteElems = Array.from(document.querySelectorAll(".quote"));
   const dotsWrap = document.getElementById("quoteDots");
   let quoteIndex = 0;
