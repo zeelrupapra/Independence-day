@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>80 Years of Azaadi — Happy Independence Day | Wishes from Zeel Rupapara</title>
+  <meta name="description"
+    content="Celebrate India's 80th Independence Day with interactive Flag Hoisting, National Anthem & Vande Mataram audio player, full-width cinematic video, and patriotic wishes from Zeel Rupapara.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="independence.css">
+</head>
+
+<body>
+
+  <!-- Background Particle & Fireworks Canvas -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- TOPBAR NAVIGATION -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-container">
+      <a href="#hero" class="brand-logo">
+        <div class="chakra-mark" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+            <use href="#chakraSymbol"></use>
+          </svg>
+        </div>
+        <span class="brand-title"><span style="color: orange;">Inde</span>pend<span
+            style="color: rgb(0, 191, 6);">ence</span> <small>2026</small></span>
+       </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#hero" class="nav-item active"><i class="fa-solid fa-flag"></i> Home</a>
+        <a href="#flagSection" class="nav-item"><i class="fa-solid fa-monument"></i> Hoist Flag</a>
+        <a href="#audioSection" class="nav-item"><i class="fa-solid fa-music"></i> Audio & Lyrics</a>
+        <a href="#timelineSection" class="nav-item"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+        <a href="#zeelWishes" class="nav-item special-nav"><i class="fa-solid fa-heart"></i> Zeel's Wishes</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button id="quickSoundBtn" class="action-btn" title="Toggle Sound FX">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+        <button id="mobileNavToggle" class="mobile-toggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION WITH FULL WIDTH CINEMATIC VIDEO BACKGROUND -->
+  <section class="hero" id="hero">
+    <!-- Full-Width Video Backdrop Container -->
+    <div class="video-backdrop-wrapper">
+      <video id="heroBgVideo" class="hero-bg-video" autoplay loop muted playsinline
+        poster="https://images.unsplash.com/photo-1532375810709-75b1da00537c?q=80&w=1620&auto=format&fit=crop">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-waving-flag-of-india-41584-large.mp4"
+          type="video/mp4">
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          type="video/mp4">
+      </video>
+      <canvas id="fallbackVideoCanvas" class="fallback-video-canvas"></canvas>
+      <div class="video-overlay-gradient"></div>
+    </div>
+
+    <!-- Video Controls Bar -->
+    <div class="video-controls-bar">
+      <button id="videoPlayPauseBtn" class="v-btn" title="Pause / Play Video"><i class="fa-solid fa-pause"></i></button>
+      <button id="videoMuteBtn" class="v-btn" title="Mute / Unmute Video Audio"><i
+          class="fa-solid fa-volume-xmark"></i></button>
+      <span class="v-status"><i class="fa-solid fa-film"></i> Full-Width Cinematic Background</span>
+    </div>
+
+    <!-- Kites Layer -->
+    <div class="kite-field" aria-hidden="true">
+      <svg class="kite k1" viewBox="0 0 60 60">
+        <polygon points="30,0 60,30 30,60 0,30" />
+        <line x1="30" y1="60" x2="20" y2="90" class="kite-tail" />
+      </svg>
+      <svg class="kite k2" viewBox="0 0 60 60">
+        <polygon points="30,0 60,30 30,60 0,30" />
+        <line x1="30" y1="60" x2="42" y2="88" class="kite-tail" />
+      </svg>
+      <svg class="kite k3" viewBox="0 0 60 60">
+        <polygon points="30,0 60,30 30,60 0,30" />
+        <line x1="30" y1="60" x2="18" y2="86" class="kite-tail" />
+      </svg>
+      <svg class="kite k4" viewBox="0 0 60 60">
+        <polygon points="30,0 60,30 30,60 0,30" />
+        <line x1="30" y1="60" x2="35" y2="92" class="kite-tail" />
+      </svg>
+    </div>
+
+    <!-- Rotating Ashoka Chakra Watermark -->
+    <div class="hero-chakra" aria-hidden="true">
+      <svg viewBox="0 0 200 200">
+        <use href="#chakraSymbol"></use>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span> 80th Swatantrata Diwas • 15 August 2026
+      </div>
+
+      <h1>80 Years<br>of <span class="azaadi-glow">AZAADI</span></h1>
+
+      <p class="hero-date">
+        <span>15 Aug 1947</span>
+        <span class="dash">&mdash;</span>
+        <span class="highlight-year">15 Aug 2026</span>
+      </p>
+
+      <p class="hero-sub">
+        Honoring the courage of our freedom fighters, celebrating the triumph of our democracy, and pledging to build a
+        grander, brighter India for generations to come.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#flagSection" class="btn btn-primary"><i class="fa-solid fa-flag"></i> Hoist The Tiranga</a>
+        <a href="#audioSection" class="btn btn-secondary"><i class="fa-solid fa-music"></i> Play Music</a>
+        <a href="#zeelWishes" class="btn btn-gold"><i class="fa-solid fa-gift"></i> Zeel's Greetings</a>
+      </div>
+    </div>
+
+    <button class="scroll-cue" onclick="document.getElementById('flagSection').scrollIntoView({behavior:'smooth'})"
+      aria-label="Scroll down">
+      <i class="fa-solid fa-angle-down"></i>
+    </button>
+  </section>
+
+  <!-- INTERACTIVE FLAG HOISTING CEREMONY SECTION -->
+  <section class="section-container" id="flagSection">
+    <div class="section-header">
+      <span class="section-eyebrow"><i class="fa-solid fa-monument"></i> National Pride</span>
+      <h2 class="section-title">Interactive Flag Hoisting</h2>
+      <p class="section-copy">Pull the rope or click the button to hoist India's National Flag up the pole. Celebrate
+        with shower of flowers and national echoes!</p>
+    </div>
+
+    <div class="flag-hoist-card">
+      <div class="flagpole-rig">
+        <div class="pole-top-finial"></div>
+        <div class="pulley-wheel"></div>
+        <div class="pole"></div>
+        <div class="rope" id="flagRope"></div>
+
+        <!-- Animated Tiranga Flag -->
+        <div class="flag-wrap" id="flagWrap">
+          <div class="flag-stripe saffron"></div>
+          <div class="flag-stripe white">
+            <svg class="flag-chakra-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="44" fill="none" stroke="#06038D" stroke-width="3" />
+              <circle cx="50" cy="50" r="4" fill="#06038D" />
+              <g id="flagChakraSpokes"></g>
+            </svg>
+          </div>
+          <div class="flag-stripe green"></div>
+        </div>
+
+        <div class="pole-base">
+          <div class="step step-1"></div>
+          <div class="step step-2"></div>
+          <div class="step step-3"></div>
+        </div>
+      </div>
+
+      <div class="hoist-controls">
+        <div class="hoist-status" id="hoistStatusText">
+          <i class="fa-solid fa-circle-info"></i> Click "Hoist Tiranga" to raise the flag!
+        </div>
+
+        <div class="hoist-progress-bar">
+          <div class="hoist-progress-fill" id="hoistProgressFill"></div>
+        </div>
+
+        <div class="hoist-btn-group">
+          <button id="hoistFlagBtn" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-circle-arrow-up"></i> Hoist Tiranga
+          </button>
+          <button id="resetFlagBtn" class="btn btn-outline">
+            <i class="fa-solid fa-rotate-left"></i> Lower Flag
+          </button>
+          <button id="burstPetalsBtn" class="btn btn-gold">
+            <i class="fa-solid fa-spa"></i> Shower Flowers
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATRIOTIC AUDIO PLAYER & VISUALIZER -->
+  <section class="section-container" id="audioSection">
+    <div class="section-header">
+      <span class="section-eyebrow"><i class="fa-solid fa-music"></i> Patriotic Music Player</span>
+      <h2 class="section-title">National Anthem & Vande Mataram</h2>
+      <p class="section-copy">Select your song and toggle between <strong>Singing / Vocal</strong> and
+        <strong>Instrumental</strong> versions!</p>
+    </div>
+
+    <!-- Audio Track Selector Tabs -->
+    <div class="audio-tab-buttons">
+      <button class="audio-tab-btn active" data-track="anthem">
+        <i class="fa-solid fa-flag"></i> National Anthem <small>(Jana Gana Mana)</small>
+      </button>
+      <button class="audio-tab-btn" data-track="vandemataram">
+        <i class="fa-solid fa-om"></i> National Song <small>(Vande Mataram)</small>
+      </button>
+    </div>
+
+    <!-- Audio Type Toggle Pills (Vocal vs Instrumental) -->
+    <div class="version-toggle-pills">
+      <button class="version-pill active" id="vocalPill" data-version="singing">
+        <i class="fa-solid fa-microphone"></i> Singing / Vocal Version
+      </button>
+      <button class="version-pill" id="instPill" data-version="instumental">
+        <i class="fa-solid fa-guitar"></i> Instrumental Version
+      </button>
+    </div>
+
+    <div class="audio-visualizer-card">
+      <!-- Visualizer Canvas Display -->
+      <div class="visualizer-stage">
+        <canvas id="audioSpectrumCanvas"></canvas>
+        <div class="center-chakra-visual">
+          <svg viewBox="0 0 100 100">
+            <use href="#chakraSymbol"></use>
+          </svg>
+        </div>
+        <div class="now-playing-badge" id="nowPlayingBadge">
+          <i class="fa-solid fa-music"></i> Ready: Jana Gana Mana (Singing)
+        </div>
+      </div>
+
+      <!-- Player Controls -->
+      <div class="player-controls">
+        <div class="time-display">
+          <span id="currentTime">00:00</span>
+          <div class="scrubber-container">
+            <input type="range" id="audioScrubber" value="0" min="0" max="100" step="0.1">
+            <div class="scrubber-fill" id="scrubberFill"></div>
+          </div>
+          <span id="durationTime">00:52</span>
+        </div>
+
+        <div class="buttons-row centered-player-row">
+          <button id="playAudioBtn" class="control-btn play-main-btn" title="Play / Pause">
+            <i class="fa-solid fa-play"></i>
+          </button>
+
+          <button id="stopAudioBtn" class="control-btn" title="Stop">
+            <i class="fa-solid fa-stop"></i>
+          </button>
+
+          <div class="volume-box">
+            <i class="fa-solid fa-volume-high" id="volumeIcon"></i>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.9">
+          </div>
+        </div>
+      </div>
+
+      <!-- Lyrics Display -->
+      <div class="lyrics-container">
+        <div class="lyrics-header">
+          <h3 id="lyricsTitle">Jana Gana Mana — National Anthem</h3>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="hindi">हिन्दी / संस्कृत</button>
+            <button class="lang-btn" data-lang="english">English Transliteration</button>
+          </div>
+        </div>
+
+        <div class="lyrics-content" id="lyricsText">
+          <!-- Populated dynamically by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WISHES FROM ZEEL RUPAPARA SECTION -->
+  <section class="section-container zeel-section" id="zeelWishes">
+    <div class="zeel-card">
+      <div class="zeel-ribbon">
+        <span><i class="fa-solid fa-star"></i> OFFICIAL GREETING <i class="fa-solid fa-star"></i></span>
+      </div>
+
+      <div class="zeel-header">
+        <div class="zeel-avatar">
+          <div class="avatar-inner">
+            <i class="fa-solid fa-user-ninja"></i>
+          </div>
+          <div class="avatar-ring"></div>
+        </div>
+        <div class="zeel-info">
+          <h3>Independence Day Wishes</h3>
+          <p class="author-name">From <span>Zeel Rupapara</span></p>
+        </div>
+      </div>
+
+      <div class="zeel-message-box">
+        <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+        <p class="zeel-quote">
+          "On this historic 80th Independence Day, let us bow our heads to the heroic souls who sacrificed everything
+          for our freedom. May our tri-color flag always fly high, symbolizing peace, unity, courage, and prosperity.
+          Wishing every Indian a joyful and proud Happy Independence Day!"
+        </p>
+        <p class="zeel-signature">— Zeel Rupapara</p>
+      </div>
+
+      <!-- Interactive Personal Wish Generator -->
+      <div class="wish-generator-box">
+        <h4><i class="fa-solid fa-wand-magic-sparkles"></i> Generate & Download Custom Independence Day Wish Card</h4>
+        <p class="wish-gen-sub">Create your personalized patriotic greeting card and download it as an Image (PNG) or
+          PDF!</p>
+
+        <div class="wish-input-group">
+          <input type="text" id="visitorNameInput" placeholder="Enter your name (e.g. Rahul / Priya)..." maxlength="35">
+          <select id="wishMsgSelect" class="wish-select">
+            <option value="1">🇮🇳 "May the tricolor flag fly high and fill your life with eternal freedom & glory!"
+            </option>
+            <option value="2">✨ "Freedom in mind, faith in words, pride in our heart. Happy 80th Independence Day!"
+            </option>
+            <option value="3">🌸 "Saluting the martyrs who gave their lives so we could see this bright day."</option>
+          </select>
+          <button id="generateWishBtn" class="btn btn-gold">
+            <i class="fa-solid fa-firework"></i> Create Wish Card
+          </button>
+        </div>
+
+        <!-- Certificate Theme Selector (Dark vs White) -->
+        <div class="card-theme-selector">
+          <span class="theme-label"><i class="fa-solid fa-palette"></i> Certificate Theme:</span>
+          <button type="button" class="theme-pill active" data-card-theme="dark"><i class="fa-solid fa-moon"></i> Dark
+            Theme</button>
+          <button type="button" class="theme-pill" data-card-theme="light"><i class="fa-solid fa-sun"></i> White
+            Theme</button>
+        </div>
+
+        <!-- Generated Card Canvas Preview for Download -->
+        <div class="wish-output-container hidden" id="wishOutputCard">
+          <div class="wish-card-downloadable theme-dark" id="downloadableWishCard">
+            <!-- Decorative Tricolor Top Border -->
+            <div class="card-tricolor-strip">
+              <span class="s"></span><span class="w"></span><span class="g"></span>
+            </div>
+
+            <div class="card-body-content">
+              <div class="card-header-badge">
+                <div class="card-chakra-icon">
+                  <svg viewBox="0 0 100 100">
+                    <use href="#chakraSymbol"></use>
+                  </svg>
+                </div>
+                <span>स्वतंत्रता दिवस • 15 AUGUST 2026</span>
+              </div>
+
+              <h3 class="card-main-title">Happy 80th Independence Day!</h3>
+
+              <div class="card-divider-line"></div>
+
+              <p class="card-message-text" id="customWishBody">
+                "May the tricolor flag always fly high with pride and dignity! Celebrating 80 years of freedom, unity,
+                and glorious heritage."
+              </p>
+
+              <div class="card-footer-tags">
+                <div class="tag-sender">
+                  <span>With Best Compliments From:</span>
+                  <strong id="customWishAuthor">Zeel Rupapara & You</strong>
+                </div>
+                <div class="tag-badge-seal">
+                  <span>OFFICIAL GREETING</span>
+                  <small>Wishes from Zeel Rupapara</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Decorative Tricolor Bottom Border -->
+            <div class="card-tricolor-strip bottom">
+              <span class="s"></span><span class="w"></span><span class="g"></span>
+            </div>
+          </div>
+
+          <!-- Download Action Buttons -->
+          <div class="wish-download-actions">
+            <button id="downloadWishImgBtn" class="btn btn-primary">
+              <i class="fa-solid fa-file-image"></i> Download Card as Photo (PNG)
+            </button>
+            <button id="downloadWishPdfBtn" class="btn btn-gold">
+              <i class="fa-solid fa-file-pdf"></i> Download Card as PDF
+            </button>
+            <button id="copyWishBtn" class="btn btn-secondary">
+              <i class="fa-solid fa-copy"></i> Copy Text
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE & FREEDOM FIGHTERS GALLERY -->
+  <section class="section-container" id="timelineSection">
+    <div class="section-header">
+      <span class="section-eyebrow"><i class="fa-solid fa-timeline"></i> Historical Saga</span>
+      <h2 class="section-title">The Long Road To Freedom</h2>
+      <p class="section-copy">Key milestones that transformed a subcontinent's destiny and broke the shackles of
+        colonialism.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-year">1857</span>
+        <div class="tl-body">
+          <h3>The First War of Independence</h3>
+          <p>The Sepoy Mutiny and widespread resistance across northern India marks the first unified stand against
+            British East India Company rule.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-year">1885</span>
+        <div class="tl-body">
+          <h3>Formation of Indian National Congress</h3>
+          <p>Political organizing takes formal shape to advocate for rights, representation, and ultimate self-rule
+            (Swaraj).</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-year">1930</span>
+        <div class="tl-body">
+          <h3>Dandi Salt March & Civil Disobedience</h3>
+          <p>Mahatma Gandhi leads a 240-mile march to the Arabian Sea, defying salt monopolies and inspiring millions
+            worldwide.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-year">1942</span>
+        <div class="tl-body">
+          <h3>Quit India Movement</h3>
+          <p>The clarion call "Do or Die" resonates across the country, demanding immediate and total British
+            withdrawal.</p>
+        </div>
+      </div>
+
+      <div class="tl-item tl-final">
+        <span class="tl-year">1947</span>
+        <div class="tl-body">
+          <h3>Midnight Tryst with Destiny</h3>
+          <p>At the stroke of midnight on August 15, India steps forth into life and freedom as an independent sovereign
+            democratic republic.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSPIRING QUOTES CAROUSEL -->
+  <section class="quote-section">
+    <span class="section-eyebrow" style="color: var(--saffron);"><i class="fa-solid fa-quote-left"></i> Words of
+      Valor</span>
+    <div class="quote-carousel">
+      <blockquote class="quote active" data-index="0">
+        <p>"Freedom is not worth having if it does not include the freedom to make mistakes."</p>
+        <cite>— Mahatma Gandhi</cite>
+      </blockquote>
+      <blockquote class="quote" data-index="1">
+        <p>"Long years ago we made a tryst with destiny, and now the time comes when we shall redeem our pledge."</p>
+        <cite>— Jawaharlal Nehru</cite>
+      </blockquote>
+      <blockquote class="quote" data-index="2">
+        <p>"Give me blood, and I shall give you freedom!"</p>
+        <cite>— Netaji Subhas Chandra Bose</cite>
+      </blockquote>
+      <blockquote class="quote" data-index="3">
+        <p>"They may kill me, but they cannot kill my ideas. They can crush my body, but they will not be able to crush
+          my spirit."</p>
+        <cite>— Bhagat Singh</cite>
+      </blockquote>
+    </div>
+    <div class="quote-dots" id="quoteDots"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-chakra" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <use href="#chakraSymbol"></use>
+        </svg>
+      </div>
+      <h3 class="footer-salute">Jai Hind! Bharat Mata Ki Jai 🇮🇳</h3>
+      <p class="footer-credits">Designed with pride for India's 80th Independence Day • Warmest wishes from <strong>Zeel
+          Rupapara</strong></p>
+      <div class="footer-date" id="liveClockDisplay">15 August 2026</div>
+    </div>
+
+    <div class="footer-rights-bar">
+      <p>© 2026 All Rights Reserved by <strong>Zeel Rupapara</strong></p>
+    </div>
+  </footer>
+
+  <!-- SVG CHAKRA SYMBOL DEFINITION -->
+  <svg width="0" height="0" style="position:absolute; pointer-events:none;">
+    <defs>
+      <g id="chakraSymbol">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2.5" />
+        <circle cx="50" cy="50" r="4" fill="currentColor" />
+        <g id="defsSpokes"></g>
+      </g>
+    </defs>
+  </svg>
+
+  <!-- html2canvas and jsPDF libraries for Wish Card Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script src="independence.js"></script>
+</body>
+
+</html>
