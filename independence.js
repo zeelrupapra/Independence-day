@@ -816,7 +816,7 @@ function initZeelWishes() {
   if (copyBtn) {
     copyBtn.addEventListener("click", () => {
       const visitorName = nameInput.value.trim() || "A Proud Indian";
-      const textToCopy = `Happy 80th Independence Day! Warmest wishes from ${visitorName} & Zeel Rupapara\nCelebrate India's freedom with patriotic songs, flag hoisting, and custom wish cards: ${window.location.href}`;
+      const textToCopy = `Happy 80th Independence Day! Warmest wishes from ${visitorName}\nCelebrate India's freedom with patriotic songs, flag hoisting, and custom wish cards: ${window.location.href}`;
       
       navigator.clipboard.writeText(textToCopy).then(() => {
         copyBtn.innerHTML = `<i class="fa-solid fa-check"></i> Copied Text!`;
