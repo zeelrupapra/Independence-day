@@ -1317,19 +1317,24 @@ svg[width="0"][height="0"] {
 
 .wish-output-container {
   margin-top: 30px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 14px;
 }
 .wish-output-container.hidden { display: none; }
 
 /* --------------------------------------------------------------------------
-   STUNNING DOWNLOADABLE INDEPENDENCE DAY WISH CARD (DARK & WHITE THEMES)
+   STUNNING DOWNLOADABLE INDEPENDENCE DAY WISH CARD (LANDSCAPE ON ALL SCREENS)
    -------------------------------------------------------------------------- */
 .wish-card-downloadable {
   position: relative;
   border-radius: var(--radius-md);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
   overflow: hidden;
-  margin-bottom: 24px;
+  margin: 0 auto 24px;
   transition: all 0.3s ease;
+  min-width: 580px;
+  max-width: 850px;
 }
 
 /* Dark Theme (Default) */
@@ -1434,7 +1439,7 @@ svg[width="0"][height="0"] {
   justify-content: space-between;
   gap: 20px;
   padding-top: 20px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   text-align: left;
 }
 
@@ -1741,14 +1746,6 @@ svg[width="0"][height="0"] {
   .buttons-row {
     justify-content: center;
   }
-  
-  .card-footer-tags {
-    flex-direction: column;
-    text-align: center;
-  }
-  .tag-badge-seal {
-    text-align: center;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1777,6 +1774,6 @@ svg[width="0"][height="0"] {
     height: 80px;
   }
   .card-body-content {
-    padding: 24px 16px;
+    padding: 28px 20px;
   }
 }
